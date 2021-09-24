@@ -1,0 +1,8 @@
+section{
+    padding: 100px 0;
+}
+.max-width{
+    max-width: 2000px;
+    padding: 0 60px;
+    margin: auto;
+}
