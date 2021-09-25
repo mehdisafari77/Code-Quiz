@@ -1,8 +1,70 @@
-section{
-    padding: 100px 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
 }
-.max-width{
-    max-width: 2000px;
-    padding: 0 60px;
-    margin: auto;
+body {
+    background-color: rgb(147, 224, 147);
 }
+
+/* nav bar */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(216, 224, 147);
+    color: #fff;
+    width: auto;
+    border: 3px dashed rgb(52, 178, 228);
+    border-radius: 5px;
+    height: 110px;
+    margin: 30px;
+}
+.scoreboard {
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    margin: 20px;
+    border-radius: 20%;
+    height: 50px;
+    width: 200px;
+    border: 3px solid rgb(52, 178, 228);
+    background-color: transparent;
+}
+.timer {
+    font-size: 22px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 20%;
+    height: 30px;
+    width: 200px;
+    border: 3px solid rgb(52, 178, 228);
+}
+.quiz {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.start-button {
+    font-size: 30px;
+    text-align: center;
+    background-color: rgb(216, 224, 147);
+    color: #fff;
+    border-radius: 20%;
+    height: 50px;
+    width: 120px;
+    border: 3px dashed rgb(52, 178, 228);
+    background-color: transparent;
+}
+#quiz {
+    padding-top: 30px;
+    text-align: center;
+}
+#first-text {
+    
+}
+
