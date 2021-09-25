@@ -12,3 +12,5 @@
 10.For loop that iterates through questions
 
 */
+ var startButton = document.querySelector()
+ var scoreButton = document.querySelector(".scoreboard")
