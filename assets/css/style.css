@@ -4,11 +4,12 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    background-color: rgb(147, 224, 147);
+    /* background-color: rgb(147, 224, 147); */
+    background-image: url(https://images.pexels.com/photos/1110658/pexels-photo-1110658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
-/* nav bar */
-nav {
+/* Header */
+header {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -45,9 +46,9 @@ nav {
 .quiz {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .start-button {
     font-size: 30px;
@@ -65,6 +66,11 @@ nav {
     text-align: center;
 }
 #first-text {
-    
+    font-size: 30px;
+    text-align: center;
+}
+#second-text {
+    font-size: 18px;
+    text-align: center;
 }
 
