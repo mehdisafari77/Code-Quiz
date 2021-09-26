@@ -135,9 +135,27 @@ var quizContent = `
         timeLeft = 0;
         timer = null;
       
-        document.getElementById("timeLeft").innerHTML = timeLeft;
+        document.getElementById("time-counter").innerHTML = timeLeft;
       
         var quizContent = gameRestartText
       
-        document.getElementById("quizBody").innerHTML = quizContent;
+        document.getElementById("quiz-context").innerHTML = quizContent;
+      }
+
+      // Incorrect question function
+      function incorrectAnswer() {
+          if (questions.choices !== questions.answer) {
+              alert("That was incorrect")
+              timeLeft -= 15;
+              //for loop position to call
+          }
+      }
+
+      // Correct answer function
+      function correctAnswer() {
+          if (questions.choices === questions.answer) {
+             alert("That was correct")
+             timeLeft += 20;
+        //for loop position to call
+          }
       }
