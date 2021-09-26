@@ -89,3 +89,17 @@ var quizContent = `
     <button onclick="setScore()">Set score!</button>`;
     
     document.getElementById("quiz-context").innerHTML = quizContent;
+
+    // Score "GET" local storage function
+    function getScore() {
+
+    }
+
+    // Score "SET" local storage function
+    function setScore() {
+        localStorage.setItem("highscore", score);
+        localStorage.setItem("name")
+
+        // get score fun position
+
+    }
