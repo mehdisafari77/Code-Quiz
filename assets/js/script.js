@@ -12,5 +12,39 @@
 10.For loop that iterates through questions
 
 */
- var startButton = document.querySelector()
+
+// HTML element selectors
+ var startButton = document.querySelector(".start-button")
  var scoreButton = document.querySelector(".scoreboard")
+
+ // Question Object Arrays
+ var questions = [{
+    title: "Which of the following methods has the ability to combine two arrays and return one new array?",
+    choices: ["map( )", "sort( )", "splice( )", "concat( )"],
+    answer: "concat( )"
+  },
+  {
+    title: "",
+    choices: [],
+    answer: ""
+  },
+  {
+    title: "",
+    choices: [],
+    answer: ""
+  },
+  {
+    title: "",
+    choices: [],
+    answer: ""
+  },
+  {
+    title: "",
+    choices: [],
+    answer: ""
+  },
+  {
+    title: "",
+    choices: [],
+    answer: ""
+  }]
