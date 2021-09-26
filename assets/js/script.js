@@ -142,20 +142,25 @@ var quizContent = `
         document.getElementById("quiz-context").innerHTML = quizContent;
       }
 
-      // Incorrect question function
-      function incorrectAnswer() {
-          if (questions.choices !== questions.answer) {
-              alert("That was incorrect")
-              timeLeft -= 15;
-              //for loop position to call
-          }
-      }
-
-      // Correct answer function
-      function correctAnswer() {
+      // Check answer function
+      function checkAnswer() {
           if (questions.choices === questions.answer) {
-             alert("That was correct")
-             timeLeft += 20;
-        //for loop position to call
-          }
+            alert("That was correct")
+            timeLeft += 20;
+            //for loop position to call
+        } else if (questions.choices !== questions.answer) {
+            alert("That was incorrect")
+            timeLeft -= 15;
+            //for loop position to call
+        }  
+      }
+      
+      function next() {
+        currentQuestion++;
+      
+        if (currentQuestion > questions.length - 1) {
+            endGame();
+            return;
+        }
+      
       }
