@@ -55,7 +55,8 @@ var questions = [{
     answer: ""
 }]
 
-function startGame() {
+// Game start function
+function gameStart() {
     timeLeft = 75;
     document.querySelector("time-counter").innerHTML = time-counter;
   
@@ -73,3 +74,18 @@ function startGame() {
   
    // question for loop function position;
   }
+
+// Game end function + interval clearing
+function gameEnd() {
+    clearInterval(timer);
+
+  document.querySelector("quiz-body").innerHTML = quizContent;
+}
+var quizContent = `
+    <h2>Game over!</h2>
+    <h3>Your score is` + score +  ` /100!</h3>
+    <h3>You got ` + score / 20 +  ` questions correct!</h3>
+    <input type="text" id="name" placeholder="First name"> 
+    <button onclick="setScore()">Set score!</button>`;
+    
+    document.getElementById("quiz-context").innerHTML = quizContent;
