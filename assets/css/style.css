@@ -53,6 +53,17 @@ header {
     width: 150px;
     border: 3px solid rgb(241, 192, 100);
 }
+
+/* quiz section after start styling */
+#actual-quiz {
+   text-align: center;
+}
+#quiz-context {
+    text-align: center;
+    padding: 40px;
+}
+
+/* quiz section before start styling */
 section .quiz {
     display: flex;
     flex-wrap: wrap;
@@ -96,6 +107,8 @@ section .quiz {
     font-size: 18px;
     text-align: center;
 }
+
+/* footer section stylint */
 .bottom-page footer{
     text-align: center;
     display: flex;
@@ -104,7 +117,6 @@ section .quiz {
     align-items: flex-end;
     height: 45vh;
 }
-
 footer {
     display: inline-flex;
     font-size: 15px;
@@ -118,6 +130,7 @@ footer {
     place-items: center;
     margin-right: 20px;
 }
+
 /* Social Media Button styling */
 footer .wrapper{
     display: inline-flex;

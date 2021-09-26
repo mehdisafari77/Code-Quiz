@@ -76,13 +76,13 @@ function gameStart() {
   
         // Run endgame function when timer equals 0
         if (timeLeft <= 0) {
-            // clear game func position
+            clearInterval()
             (timer);
             endGame() 
         }
     }, 1000);
   
-   // question for loop function position;
+   next()
   }
 
 // Game end function + interval clearing
@@ -91,7 +91,7 @@ function gameEnd() {
 
   document.querySelector("quiz-body").innerHTML = quizContent;
 }
-var quizContent = `
+    var quizContent = `
     <h2>Game over!</h2>
     <h3>Your score is` + score +  ` /100!</h3>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
@@ -147,11 +147,11 @@ var quizContent = `
           if (questions.choices === questions.answer) {
             alert("That was correct")
             timeLeft += 20;
-            //for loop position to call
+            next()
         } else if (questions.choices !== questions.answer) {
             alert("That was incorrect")
             timeLeft -= 15;
-            //for loop position to call
+            next()
         }  
       }
       
@@ -162,5 +162,20 @@ var quizContent = `
             endGame();
             return;
         }
-      
-      }
+        var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+
+        for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
+
+        var quesButton = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
+        quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
+        if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
+          quesButton = quesButton.replace("[ANS]", "correct()");
+        } 
+        
+        else {
+          quesButton = quesButton.replace("[ANS]", "incorrect()");
+        }
+        quizContent += quesButton
+    }
+    document.getElementById("quiz-context").innerHTML = quizContent;
+}
