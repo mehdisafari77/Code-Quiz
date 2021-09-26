@@ -17,6 +17,7 @@
 // HTML element selectors
 var startButton = document.querySelector(".start-button")
 var scoreButton = document.querySelector(".scoreboard")
+var gameRestartText = document.querySelector(".quiz")
 
 // Global reusable variables
 var score = 0;
@@ -123,5 +124,20 @@ var quizContent = `
         localStorage.setItem("highscore", "");
         localStorage.setItem("highscoreName",  "");
       
-        // game reset func position
+        resetGame()
+      }
+
+      // Reseting game and giving option to restart
+      function resetGame() {
+        clearInterval(timer);
+        score = 0;
+        currentQuestion = -1;
+        timeLeft = 0;
+        timer = null;
+      
+        document.getElementById("timeLeft").innerHTML = timeLeft;
+      
+        var quizContent = gameRestartText
+      
+        document.getElementById("quizBody").innerHTML = quizContent;
       }
