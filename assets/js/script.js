@@ -17,6 +17,12 @@
  var startButton = document.querySelector(".start-button")
  var scoreButton = document.querySelector(".scoreboard")
 
+ // Global reusable variables
+ var score = 0;
+ var currentQuestion = -1;
+ var timeLeft = 0;
+ var timer;
+
  // Question Object Arrays
  var questions = [{
     title: "Which of the following methods has the ability to combine two arrays and return one new array?",
