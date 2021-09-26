@@ -10,6 +10,7 @@
 8. Functions to check for wrong answers and deduct time when wrong'
 9. Function to increase time when answer is right
 10.For loop that iterates through questions
+11. init() function that starts to run when page initially loads
 
 */
 
@@ -22,6 +23,11 @@ var score = 0;
 var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
+
+// init function
+function init() {
+    getScore()
+}
 
 // Question Object Arrays
 var questions = [{
@@ -55,6 +61,9 @@ var questions = [{
     answer: ""
 }]
 
+// Adding event listener to start button so that it runs initial function when clicked
+startButton.addEventListener("click", gameStart);
+
 // Game start function
 function gameStart() {
     timeLeft = 75;
@@ -68,7 +77,7 @@ function gameStart() {
         if (timeLeft <= 0) {
             // clear game func position
             (timer);
-            // end game func position; 
+            endGame() 
         }
     }, 1000);
   
@@ -92,14 +101,27 @@ var quizContent = `
 
     // Score "GET" local storage function
     function getScore() {
+        quizContent = `
+        <h2>` + localStorage.getItem("name") + `'s highscore is:</h2>
+        <h1>` + localStorage.getItem("highscore") + `</h1><br> 
+        <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button> `;
 
+        document.getElementById("quiz-context").innerHTML = quizContent;
     }
 
     // Score "SET" local storage function
     function setScore() {
         localStorage.setItem("highscore", score);
-        localStorage.setItem("name")
-
-        // get score fun position
+        localStorage.setItem("highScoreName")
+        document.getElementById("name")
+        getScore()
 
     }
+
+    // Score and name clear from local storage function
+    function clearScore() {
+        localStorage.setItem("highscore", "");
+        localStorage.setItem("highscoreName",  "");
+      
+        // game reset func position
+      }
