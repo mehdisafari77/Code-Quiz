@@ -9,7 +9,7 @@
 7. Functions for setting and getting scores from local storage
 8. Functions to check for wrong answers and deduct time when wrong'
 9. Function to increase time when answer is right
-10.For loop that iterates through questions
+10.For loop that iterates through questions' answers
 11. init() function that starts to run when page initially loads
 
 */
@@ -73,12 +73,11 @@ function gameStart() {
   
     timer = setInterval(function() {
         remainTime--;
-        // document.getElementById("#remainTime").innerHTML = remainTime;
+        document.getElementById("#remainTime").innerHTML = remainTime;
   
         // Run endgame function when timer equals 0
         if (remainTime <= 0) {
-            clearInterval()
-            (timer);
+            clearInterval(timer);
             gameEnd() 
         }
     }, 1000);
@@ -91,9 +90,9 @@ function gameEnd() {
     clearInterval(timer);
 
   var quizContent = `
-    <h2>Game over!</h2>
-    <h3>Your score is ` + score +  ` /100!</h3>
-    <h3>You got ` + score / 6 +  ` questions correct!</h3>
+    <p class="p-title-small">Game over!</p>
+    <p class="p-title-smaller>Your score is ` + score +  ` /100!</p>
+    <p class="p-title-smaller>You got ` + score / 6 +  ` questions correct!</p>
     <input type="text" id="name" placeholder="First name"> 
     <button id="quiz-button" onclick="setScore()">Set score!</button>`;
     
@@ -104,8 +103,8 @@ function gameEnd() {
     // Score "GET" local storage function
     function getScore() {
         quizContent = `
-        <h2>` + localStorage.getItem("name") + `'s highscore is:</h2>
-        <h1>` + localStorage.getItem("highscore") + `</h1><br> 
+        <p class="p">` + localStorage.getItem("name") + `'s highscore is:</p>
+        <p class="p-title>` + localStorage.getItem("highscore") + `</p><br> 
         <button id="quiz-button" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
         document.getElementById("quiz-context").innerHTML = quizContent;
@@ -163,11 +162,11 @@ function gameEnd() {
             gameEnd();
             return;
         }
-        var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+        var quizContent = `<p class="title>` + questions[currentQuestion].title + `</p>`
 
         for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
 
-        var quesButton = "<button  onclick=\"[ANS]\">[CHOICE]</button>"; 
+        var quesButton = `<button class="ques-button"  onclick=\"[ANS]\">[CHOICE]</button>`; 
         quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
         if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
           quesButton = quesButton.replace("[ANS]", "checkAnswer()");

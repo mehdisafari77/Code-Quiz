@@ -71,6 +71,33 @@ header {
     font-size: 17px;
     margin: 4px;
 }
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 23px;
+}
+
+.p-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+
+.p-title-smaller {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.ques-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    font-size: 17px;
+    margin: 4px;
+    border: 2px dashed rgb(241, 192, 100);;
+}
+.ques-button:hover {
+    background-color: rgb(241, 192, 100);
+}
 
 /* quiz section before start styling */
 section .quiz {
