@@ -22,7 +22,7 @@ var gameRestartText = document.querySelector(".quiz")
 // Global reusable variables
 var score = 0;
 var currentQuestion = -1;
-var timeLeft = 0;
+var remainTime = 0;
 var timer;
 
 // init function
@@ -67,18 +67,19 @@ startButton.addEventListener("click", gameStart);
 
 // Game start function
 function gameStart() {
-    timeLeft = 75;
-    document.querySelector("time-counter").innerHTML = time-counter;
+    remainTime = 75;
+    document.querySelector("#remainTime").innerHTML = remainTime;
+    // startButton.disabled = true;
   
     timer = setInterval(function() {
-        timeLeft--;
-        document.getElementById("time-counter").innerHTML = time-counter;
+        remainTime--;
+        // document.getElementById("#remainTime").innerHTML = remainTime;
   
         // Run endgame function when timer equals 0
-        if (timeLeft <= 0) {
+        if (remainTime <= 0) {
             clearInterval()
             (timer);
-            endGame() 
+            gameEnd() 
         }
     }, 1000);
   
@@ -89,23 +90,23 @@ function gameStart() {
 function gameEnd() {
     clearInterval(timer);
 
-  document.querySelector("quiz-body").innerHTML = quizContent;
-}
-    var quizContent = `
+  var quizContent = `
     <h2>Game over!</h2>
-    <h3>Your score is` + score +  ` /100!</h3>
-    <h3>You got ` + score / 20 +  ` questions correct!</h3>
+    <h3>Your score is ` + score +  ` /100!</h3>
+    <h3>You got ` + score / 6 +  ` questions correct!</h3>
     <input type="text" id="name" placeholder="First name"> 
-    <button onclick="setScore()">Set score!</button>`;
+    <button id="quiz-button" onclick="setScore()">Set score!</button>`;
     
-    document.getElementById("quiz-context").innerHTML = quizContent;
+    document.getElementById("quiz-content").innerHTML = quizContent;
+}
+    
 
     // Score "GET" local storage function
     function getScore() {
         quizContent = `
         <h2>` + localStorage.getItem("name") + `'s highscore is:</h2>
         <h1>` + localStorage.getItem("highscore") + `</h1><br> 
-        <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button> `;
+        <button id="quiz-button" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
         document.getElementById("quiz-context").innerHTML = quizContent;
     }
@@ -113,8 +114,8 @@ function gameEnd() {
     // Score "SET" local storage function
     function setScore() {
         localStorage.setItem("highscore", score);
-        localStorage.setItem("highScoreName")
-        document.getElementById("name")
+        localStorage.setItem("highScoreName", document.getElementById("name").value)
+        
         getScore()
 
     }
@@ -135,22 +136,22 @@ function gameEnd() {
         timeLeft = 0;
         timer = null;
       
-        document.getElementById("time-counter").innerHTML = timeLeft;
+        document.getElementById("remainTime").innerHTML = timeLeft;
       
         var quizContent = gameRestartText
       
-        document.getElementById("quiz-context").innerHTML = quizContent;
+        document.getElementById("quiz-content").innerHTML = quizContent;
       }
 
       // Check answer function
       function checkAnswer() {
           if (questions.choices === questions.answer) {
             alert("That was correct")
-            timeLeft += 20;
+            remainTime += 20;
             next()
         } else if (questions.choices !== questions.answer) {
             alert("That was incorrect")
-            timeLeft -= 15;
+            remainTime -= 15;
             next()
         }  
       }
@@ -159,23 +160,23 @@ function gameEnd() {
         currentQuestion++;
       
         if (currentQuestion > questions.length - 1) {
-            endGame();
+            gameEnd();
             return;
         }
         var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
 
         for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
 
-        var quesButton = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
+        var quesButton = "<button  onclick=\"[ANS]\">[CHOICE]</button>"; 
         quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
         if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
-          quesButton = quesButton.replace("[ANS]", "correct()");
+          quesButton = quesButton.replace("[ANS]", "checkAnswer()");
         } 
         
         else {
-          quesButton = quesButton.replace("[ANS]", "incorrect()");
+          quesButton = quesButton.replace("[ANS]", "checkAnswer()");
         }
         quizContent += quesButton
     }
-    document.getElementById("quiz-context").innerHTML = quizContent;
+    document.getElementById("quiz-content").innerHTML = quizContent;
 }
