@@ -10,6 +10,7 @@
 body {
     /* background-color: rgb(147, 224, 147); */
     background-image: url(https://images.pexels.com/photos/1110658/pexels-photo-1110658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    min-height: 100vh;
 }
 
 /* Header */
@@ -19,6 +20,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 98vw;
     background-color: rgb(216, 224, 147);
     color: #fff;
     width: auto;
@@ -56,20 +58,24 @@ header {
 
 /* quiz section after start styling */
 #actual-quiz {
-    display: flex;
-    flex-direction: row ;
-    padding-top: 30px;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
 }
-#quiz-context {
-    display: flex;
-    flex-direction: row ;
-    padding-top: 30px;
-    align-items: center;
-    justify-content: center;
+#quiz-content {
+    text-align: center;
+    padding: 12vh;
 }
 #quiz-button {
+    border: none;
+    background-color: rgb(93, 233, 93);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 16px 10px 16px;
+    font-size: 17px;
+    margin: 4px;
+    border: 2px dashed rgb(241, 192, 100);
+    cursor: pointer;
+}
+#quiz-button2 {
     border: none;
     background-color: rgb(93, 233, 93);
     color: white;
@@ -83,7 +89,7 @@ header {
 #quiz-button:hover {
     background-color: rgb(35, 170, 35);
 }
-.title {
+.p-title-small {
     font-family: 'Poppins', sans-serif;
     font-size: 23px;
 }
@@ -135,8 +141,7 @@ section .quiz {
     width: 120px;
     border: 3px dashed rgb(241, 192, 100);
     background-color: transparent;
-    /* box-shadow: 10px 10px rgb(241, 192, 100);
-    padding-bottom: 50px; */
+    box-shadow: 10px 10px rgb(241, 192, 100);
 }
 .start-button:hover {
     transform: scale(1.03);
@@ -147,6 +152,7 @@ section .quiz {
     text-align: center;
 }
 #first-text {
+    color: #111;
     padding-left: 60px;
     padding-right: 60px;
     margin-top: 150px;
@@ -154,6 +160,7 @@ section .quiz {
     text-align: center;
 }
 #second-text {
+    color: #111;
     padding-top: 10px;
     padding-left: 60px;
     padding-right: 60px;
@@ -169,6 +176,8 @@ section .quiz {
     flex-direction: row;
     align-items: flex-end;
     height: 45vh;
+    padding-bottom: 20px;
+    margin-top: auto;
 }
 footer {
     display: inline-flex;

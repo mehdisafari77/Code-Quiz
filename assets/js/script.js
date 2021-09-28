@@ -18,13 +18,16 @@
 var startButton = document.querySelector(".start-button")
 var scoreButton = document.querySelector(".scoreboard")
 var gameRestartText = document.querySelector("#first-text")
+var firstText = document.querySelector("#first-Text")
+var secondText = document.querySelector("#second-text")
 var startQuizText = document.querySelector(".quiz")
 var timerElement = document.querySelector("#remainTime")
+var footer = document.querySelector(".bottom-page")
 
 // Global reusable variables
 var score = 0;
 var currentQuestion = -1;
-var timerCount;
+var timerCount= 0;
 var timer;
 
 // init function
@@ -38,31 +41,32 @@ var questions = [{
     choices: ["map()", "sort()", "splice()", "concat()"],
     answer: "concat()"
     },
-{
+    {
     title: "Inside which HTML element do we put the JavaScript?",
     choices: ["<scripting>", "<script>", "<js>", "<javascript>"],
     answer: "<script>"
     },
-{
+    {
     title: "Inside what tage is the correct place to insert a JavaScript?",
     choices: ["<head>", "<footer>", "<body>", "<html>"],
     answer: "<body>"
-  },
-{
+    },
+    {
     title: "Which event occurs when the user clicks on an HTML element?",
     choices: ["onclick", "onchange", "onmouseclick", "onmouseover"],
     answer: "onclick"
-  },
-{
+    },
+    {
     title: "Which operator is used to assign a value to a variable?",
-    choices: ["-", "=", "*", "x"],
+    choices: [" - ", " = ", " * ", " x "],
     answer: "="
-  },
-{
+    },
+    {
     title: "What javascript method removes the last element from an array and returns that element.",
     choices: ["push()", "pop()", "reverse()", "length()"],
     answer: "pop()"
-}]
+    }
+]
 
 // Adding event listener to start button and scoreboard for starting and score access
 startButton.addEventListener("click", gameStart);
@@ -70,18 +74,15 @@ scoreButton.addEventListener("click", getScore)
 
 // Game start function
 function gameStart() {
-  startButton.disabled = true
-  // startQuizText.off()
-    timerCount = 75;
+
+    timerCount = 100;
     timerElement.textContent = timerCount;
-    // startButton.disabled = true;
-  
+
     timer = setInterval(function() {
         timerCount--;
-        // document.getElementById("#remainTime").innerHTML = remainTime;
   
         // Run endgame function when timer equals 0
-        if (timerCount <= 0) {
+        if (timerCount === 0) {
             clearInterval(timer);
             gameEnd() 
         }
@@ -110,7 +111,7 @@ function gameEnd() {
       var quizContent = `
         <p class="p">` + localStorage.getItem("name") + ` your highscore is:</p>
         <p class="p-title>` + localStorage.getItem(score) + `</p><br> 
-        <button id="quiz-button" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
+        <button id="quiz-button2" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
         document.getElementById("quiz-content").innerHTML = quizContent;
     }
@@ -136,13 +137,14 @@ function gameEnd() {
       function resetGame() {
         clearInterval(timer);
         score = 0;
-        currentQuestion = -1;
+        // currentQuestion = -1;
         remainTime = 0;
         timer = null;
       
         document.getElementById("remainTime").innerHTML = remainTime;
       
-        var quizContent = gameRestartText
+        gameStart()
+       
       
         document.getElementById("quiz-content").innerHTML = quizContent;
       }
