@@ -44,7 +44,7 @@ header {
     transform: scale(1.03);
     background-color: rgb(241, 192, 100);
 }
-.timer {
+.time-box {
     font-size: 22px;
     text-align: center;
     margin: 20px;
@@ -56,20 +56,32 @@ header {
 
 /* quiz section after start styling */
 #actual-quiz {
-   text-align: center;
+    display: flex;
+    flex-direction: row ;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
 }
 #quiz-context {
-    text-align: center;
-    padding: 40px;
+    display: flex;
+    flex-direction: row ;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
 }
 #quiz-button {
     border: none;
-    background-color: rgb(241, 192, 100);
+    background-color: rgb(93, 233, 93);
     color: white;
     border-radius: 5px;
     padding: 10px 16px 10px 16px;
     font-size: 17px;
     margin: 4px;
+    border: 2px dashed rgb(241, 192, 100);
+    cursor: pointer;
+}
+#quiz-button:hover {
+    background-color: rgb(35, 170, 35);
 }
 .title {
     font-family: 'Poppins', sans-serif;
@@ -87,16 +99,20 @@ header {
 }
 .ques-button {
     border: none;
-    background-color: transparent;
+    background-color: rgb(93, 233, 93);
     color: white;
     border-radius: 5px;
     padding: 5px 5px 5px 5px;
     font-size: 17px;
     margin: 4px;
-    border: 2px dashed rgb(241, 192, 100);;
+    border: 2px dashed rgb(241, 192, 100);
+    cursor: pointer;
 }
 .ques-button:hover {
-    background-color: rgb(241, 192, 100);
+    background-color: rgb(35, 170, 35);
+}
+#name {
+    border-radius: 5deg;
 }
 
 /* quiz section before start styling */
@@ -119,7 +135,8 @@ section .quiz {
     width: 120px;
     border: 3px dashed rgb(241, 192, 100);
     background-color: transparent;
-    box-shadow: 10px 10px rgb(241, 192, 100);
+    /* box-shadow: 10px 10px rgb(241, 192, 100);
+    padding-bottom: 50px; */
 }
 .start-button:hover {
     transform: scale(1.03);

@@ -17,12 +17,14 @@
 // HTML element selectors
 var startButton = document.querySelector(".start-button")
 var scoreButton = document.querySelector(".scoreboard")
-var gameRestartText = document.querySelector(".quiz")
+var gameRestartText = document.querySelector("#first-text")
+var startQuizText = document.querySelector(".quiz")
+var timerElement = document.querySelector("#remainTime")
 
 // Global reusable variables
 var score = 0;
 var currentQuestion = -1;
-var remainTime = 0;
+var timerCount;
 var timer;
 
 // init function
@@ -33,50 +35,53 @@ function init() {
 // Question Object Arrays
 var questions = [{
     title: "Which of the following methods has the ability to combine two arrays and return one new array?",
-    choices: ["map( )", "sort( )", "splice( )", "concat( )"],
-    answer: "concat( )"
+    choices: ["map()", "sort()", "splice()", "concat()"],
+    answer: "concat()"
     },
 {
-    title: "",
-    choices: [],
-    answer: ""
+    title: "Inside which HTML element do we put the JavaScript?",
+    choices: ["<scripting>", "<script>", "<js>", "<javascript>"],
+    answer: "<script>"
     },
 {
-    title: "",
-    choices: [],
-    answer: ""
+    title: "Inside what tage is the correct place to insert a JavaScript?",
+    choices: ["<head>", "<footer>", "<body>", "<html>"],
+    answer: "<body>"
   },
 {
-    title: "",
-    choices: [],
-    answer: ""
+    title: "Which event occurs when the user clicks on an HTML element?",
+    choices: ["onclick", "onchange", "onmouseclick", "onmouseover"],
+    answer: "onclick"
   },
 {
-    title: "",
-    choices: [],
-    answer: ""
+    title: "Which operator is used to assign a value to a variable?",
+    choices: ["-", "=", "*", "x"],
+    answer: "="
   },
 {
-    title: "",
-    choices: [],
-    answer: ""
+    title: "What javascript method removes the last element from an array and returns that element.",
+    choices: ["push()", "pop()", "reverse()", "length()"],
+    answer: "pop()"
 }]
 
-// Adding event listener to start button so that it runs initial function when clicked
+// Adding event listener to start button and scoreboard for starting and score access
 startButton.addEventListener("click", gameStart);
+scoreButton.addEventListener("click", getScore)
 
 // Game start function
 function gameStart() {
-    remainTime = 75;
-    document.querySelector("#remainTime").innerHTML = remainTime;
+  startButton.disabled = true
+  // startQuizText.off()
+    timerCount = 75;
+    timerElement.textContent = timerCount;
     // startButton.disabled = true;
   
     timer = setInterval(function() {
-        remainTime--;
-        document.getElementById("#remainTime").innerHTML = remainTime;
+        timerCount--;
+        // document.getElementById("#remainTime").innerHTML = remainTime;
   
         // Run endgame function when timer equals 0
-        if (remainTime <= 0) {
+        if (timerCount <= 0) {
             clearInterval(timer);
             gameEnd() 
         }
@@ -92,9 +97,9 @@ function gameEnd() {
   var quizContent = `
     <p class="p-title-small">Game over!</p>
     <p class="p-title-smaller>Your score is ` + score +  ` /100!</p>
-    <p class="p-title-smaller>You got ` + score / 6 +  ` questions correct!</p>
+    <p class="p-title-smaller>You got ` + score / 20 +  ` questions correct!</p>
     <input type="text" id="name" placeholder="First name"> 
-    <button id="quiz-button" onclick="setScore()">Set score!</button>`;
+    <button id="quiz-button" onclick="setScore()">Save Score!</button>`;
     
     document.getElementById("quiz-content").innerHTML = quizContent;
 }
@@ -102,12 +107,12 @@ function gameEnd() {
 
     // Score "GET" local storage function
     function getScore() {
-        quizContent = `
-        <p class="p">` + localStorage.getItem("name") + `'s highscore is:</p>
-        <p class="p-title>` + localStorage.getItem("highscore") + `</p><br> 
+      var quizContent = `
+        <p class="p">` + localStorage.getItem("name") + ` your highscore is:</p>
+        <p class="p-title>` + localStorage.getItem(score) + `</p><br> 
         <button id="quiz-button" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
-        document.getElementById("quiz-context").innerHTML = quizContent;
+        document.getElementById("quiz-content").innerHTML = quizContent;
     }
 
     // Score "SET" local storage function
@@ -132,10 +137,10 @@ function gameEnd() {
         clearInterval(timer);
         score = 0;
         currentQuestion = -1;
-        timeLeft = 0;
+        remainTime = 0;
         timer = null;
       
-        document.getElementById("remainTime").innerHTML = timeLeft;
+        document.getElementById("remainTime").innerHTML = remainTime;
       
         var quizContent = gameRestartText
       
@@ -143,17 +148,15 @@ function gameEnd() {
       }
 
       // Check answer function
-      function checkAnswer() {
-          if (questions.choices === questions.answer) {
-            alert("That was correct")
-            remainTime += 20;
+      function correct() {
+            score += 10;
             next()
-        } else if (questions.choices !== questions.answer) {
-            alert("That was incorrect")
+
+        } function incorrect(){
             remainTime -= 15;
             next()
         }  
-      }
+      
       
       function next() {
         currentQuestion++;
@@ -166,14 +169,14 @@ function gameEnd() {
 
         for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
 
-        var quesButton = `<button class="ques-button"  onclick=\"[ANS]\">[CHOICE]</button>`; 
+        var quesButton = `<button class="ques-button" onclick=\"[ANS]\">[CHOICE]</button>`; 
         quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
         if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
-          quesButton = quesButton.replace("[ANS]", "checkAnswer()");
+          quesButton = quesButton.replace("[ANS]", "correct()");
         } 
         
         else {
-          quesButton = quesButton.replace("[ANS]", "checkAnswer()");
+          quesButton = quesButton.replace("[ANS]", "incorrect()");
         }
         quizContent += quesButton
     }
