@@ -1,5 +1,5 @@
 # Code-Quiz
-A Javascript Coding Quiz.
+A responsive Javascript Coding Quiz.
 
 ## Site GIf
 ![RPReplay_Final1632890090_SparkVideo](https://user-images.githubusercontent.com/75599021/135204750-e41642fa-0f6b-4467-bfa1-9dbd4c90dace.gif)
@@ -10,7 +10,7 @@ A Javascript Coding Quiz.
 - Javascript - for logic and functionallity purposes (local storage usage)
 
 ## Summary 
-This website's functionality will start after the start button is tapped or clicked. The game will start with a running timer, there are 6 questions to answer, all multiple choices, one is correct. When a correct answer is chosen, the timer contoniues to run as normal, but when wrong answer is chosen, user will notice timer to lose seconds. User will lose wither by finishing questions, or by losing time. After game is over, user ca store their name an score in their local storage. This project uses a lot of DOM manipulation of HTML elements. 
+This website's functionality will start after the start button is tapped or clicked. The game will start with a running timer, there are 6 questions to answer, all multiple choices, one is correct. When a correct answer is chosen, the timer contoniues to run as normal, but when wrong answer is chosen, user will notice timer to lose seconds. User will lose wither by finishing questions, or by losing time. After game is over, user ca store their name an score in their local storage. This project uses a lot of DOM manipulation of HTML elements. The website is also built and designed to be mobile responsive.
 
 ## Javascript Code Snippet
 
