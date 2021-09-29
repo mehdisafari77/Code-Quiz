@@ -8,7 +8,7 @@
 6. Reset game function
 7. Functions for setting and getting scores from local storage
 8. Functions to check for wrong answers and deduct time when wrong'
-9. Function to increase time when answer is right
+9. Function to increase score when answer is right
 10.For loop that iterates through questions' answers
 11. init() function that starts to run when page initially loads
 
@@ -59,6 +59,9 @@ var questions = [{
     answer: "pop()"
     }
 ]
+function init() {
+    getScore()
+}
 
 // Adding event listener to start button and scoreboard for starting and score access
 startButton.addEventListener("click", gameStart);
