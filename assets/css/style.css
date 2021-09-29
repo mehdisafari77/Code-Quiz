@@ -64,7 +64,7 @@ header {
     text-align: center;
     padding: 12vh;
 }
-#quiz-button {
+.quiz-button {
     background-color: rgb(93, 233, 93);
     color: white;
     border-radius: 5px;
@@ -74,22 +74,26 @@ header {
     border: 2px dashed rgb(241, 192, 100);
     cursor: pointer;
 }
-#quiz-button:hover {
+.quiz-button:hover {
     background-color: rgb(35, 170, 35);
 }
 .p-title-small {
     font-family: 'Poppins', sans-serif;
-    font-size: 23px;
+    font-size: 25px;
 }
-
+input {
+    height: 50px ;
+    border-radius: 10%;
+}
 .p-title {
+    margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 23px;
 }
 
 .p-title-smaller {
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 17px;
 }
 .ques-button {
     background-color: rgb(93, 233, 93);

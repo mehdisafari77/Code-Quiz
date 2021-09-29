@@ -89,23 +89,24 @@ function gameEnd() {
 
   var quizContent = `
     <p class="p-title-small">Game Over!</p>
-    <p class="p-title-smaller>Your score is ` + score +  ` /100!</p>
-    <p class="p-title-smaller>You got ` + score / 20 +  ` questions correct!</p>
+    <p class="p-title-smaller">Your score is ` + score +  ` /100!</p>
+    <p class="p-title-smaller">You got ` + score / 20 +  ` questions correct!</p>
     <input type="text" id="name" placeholder="Initials here"> 
-    <button id="quiz-button" onclick="setScore()">Save Score!</button>`;
+    <button class="quiz-button" onclick="setScore()">Save Score!</button>`;
     
     quizBody.innerHTML = quizContent;
+    console.log(quizContent)
 }
     
 
     // Score "GET" local storage function
     function getScore() {
       var quizContent = `
-        <p class="p">` + localStorage.getItem("highscoreName") + ` your highscore is:</p>
-        <p class="p-title>` + localStorage.getItem("highscore") + `</p><br> 
+        <p class="p-title">` + localStorage.getItem("highscoreName") + ` your highscore is:</p>
+        <p class="p-title">` + localStorage.getItem("highscore") + `</p><br> 
 
-        <button id="quiz-button" onclick="clearScore()">Clear score!</button>
-        <button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
+        <button class="quiz-button" onclick="clearScore()">Clear score!</button>
+        <button class="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
         quizBody.innerHTML = quizContent;
     }
@@ -140,7 +141,7 @@ function gameEnd() {
         var quizContent = `
         <p id="first-text">Welcome To The Code Master! The Coding Quiz Challenge Made For Masters.</p>
         <p id= "second-text">The game is simple, answer the questions and if correct you don't lose time, if wrong, your time will decrease, thus your score will be lower</p>
-        <button class="start-button">Start!</button>
+        <button onclick="gameStart()" class="start-button">Start!</button>
         `
         quizBody.innerHTML = quizContent;
       }
@@ -163,7 +164,7 @@ function gameEnd() {
                 return;
             }
 
-            var quizContent = `<p class="p-title>` + questions[currentQuestion].title + `</p>`
+            var quizContent = `<p class="p-title">` + questions[currentQuestion].title + `</p>`
           
             for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
           
