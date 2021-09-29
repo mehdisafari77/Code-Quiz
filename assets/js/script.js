@@ -72,7 +72,7 @@ function gameStart() {
 
     timer = setInterval(function() {
         timeLeft--;
-  
+        timerElement.innerHTML = timeLeft;
         // Run endgame function when timer equals 0
         if (timeLeft <= 0) {
             clearInterval(timer);
@@ -80,7 +80,7 @@ function gameStart() {
         }
     }, 1000);
   
-   next()
+   loop()
   }
 
 // Game end function + interval clearing
@@ -144,19 +144,20 @@ function gameEnd() {
         <button onclick="gameStart()" class="start-button">Start!</button>
         `
         quizBody.innerHTML = quizContent;
+        console.log(quizContent)
       }
 
       // Check answer function
       function correct() {
             score += 20;
-            next()
+            loop()
 
         } function incorrect(){
             timeLeft -= 15;
-            next()
+            loop()
         }  
       
-        function next() {
+        function loop() {
             currentQuestion++;
               
             if (currentQuestion > questions.length - 1) {
