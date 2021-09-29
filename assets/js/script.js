@@ -27,13 +27,8 @@ var footer = document.querySelector(".bottom-page")
 // Global reusable variables
 var score = 0;
 var currentQuestion = -1;
-var timerCount= 0;
+var timeLeft= 0;
 var timer;
-
-// init function
-function init() {
-    getScore()
-}
 
 // Question Object Arrays
 var questions = [{
@@ -75,14 +70,14 @@ scoreButton.addEventListener("click", getScore)
 // Game start function
 function gameStart() {
 
-    timerCount = 100;
-    timerElement.textContent = timerCount;
+    timeLeft = 100;
+    document.getElementById("timeLeft").innerHTML = timeLeft;
 
     timer = setInterval(function() {
-        timerCount--;
+        timeLeft--;
   
         // Run endgame function when timer equals 0
-        if (timerCount === 0) {
+        if (timeLeft <= 0) {
             clearInterval(timer);
             gameEnd() 
         }
@@ -109,9 +104,11 @@ function gameEnd() {
     // Score "GET" local storage function
     function getScore() {
       var quizContent = `
-        <p class="p">` + localStorage.getItem("name") + ` your highscore is:</p>
-        <p class="p-title>` + localStorage.getItem(score) + `</p><br> 
-        <button id="quiz-button2" onclick="clearScore()">Clear score!</button><button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
+        <p class="p">` + localStorage.getItem("highScoreName") + ` your highscore is:</p>
+        <p class="p-title>` + localStorage.getItem("highscore") + `</p><br> 
+
+        <button id="quiz-button" onclick="clearScore()">Clear score!</button>
+        <button id="quiz-button" onclick="resetGame()">Play Again!</button> `;
 
         document.getElementById("quiz-content").innerHTML = quizContent;
     }
@@ -119,7 +116,7 @@ function gameEnd() {
     // Score "SET" local storage function
     function setScore() {
         localStorage.setItem("highscore", score);
-        localStorage.setItem("highScoreName", document.getElementById("name").value)
+        localStorage.setItem("highScoreName", document.getElementById("name").value);
         
         getScore()
 
@@ -137,50 +134,53 @@ function gameEnd() {
       function resetGame() {
         clearInterval(timer);
         score = 0;
-        // currentQuestion = -1;
-        remainTime = 0;
+        currentQuestion = -1;
+        timeLeft = 0;
         timer = null;
       
-        document.getElementById("remainTime").innerHTML = remainTime;
-      
-        gameStart()
+        document.getElementById("timeLeft").innerHTML = timeLeft;
        
-      
+        var quizContent = `
+        <p id="first-text">Welcome To The Code Master! The Coding Quiz Challenge Made For Masters.</p>
+        <p id= "second-text">The game is simple, answer the questions and if correct you don't lose time, if wrong, your time will decrease, thus your score will be lower</p>
+        <button  class="start-button">Start!</button>
+        `
         document.getElementById("quiz-content").innerHTML = quizContent;
       }
 
       // Check answer function
       function correct() {
-            score += 10;
+            score += 20;
             next()
 
         } function incorrect(){
-            remainTime -= 15;
+            timeLeft -= 15;
             next()
         }  
       
       
-      function next() {
-        currentQuestion++;
-      
-        if (currentQuestion > questions.length - 1) {
-            gameEnd();
-            return;
-        }
-        var quizContent = `<p class="title>` + questions[currentQuestion].title + `</p>`
-
-        for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
-
-        var quesButton = `<button class="ques-button" onclick=\"[ANS]\">[CHOICE]</button>`; 
-        quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
-        if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
-          quesButton = quesButton.replace("[ANS]", "correct()");
-        } 
-        
-        else {
-          quesButton = quesButton.replace("[ANS]", "incorrect()");
-        }
-        quizContent += quesButton
-    }
-    document.getElementById("quiz-content").innerHTML = quizContent;
-}
+        function next() {
+            currentQuestion++;
+              
+            if (currentQuestion > questions.length - 1) {
+                gameEnd();
+                return;
+            }
+            var quizContent = `<p class="title>` + questions[currentQuestion].title + `</p>`
+          
+            for (var quesOptionLoop = 0; quesOptionLoop < questions[currentQuestion].choices.length; quesOptionLoop++) {
+          
+              var quesButton = `<button class="ques-button" onclick=\"[ANS]\">[CHOICE]</button>`; 
+              quesButton = quesButton.replace("[CHOICE]", questions[currentQuestion].choices[quesOptionLoop]);
+              if (questions[currentQuestion].choices[quesOptionLoop] == questions[currentQuestion].answer) {
+                quesButton = quesButton.replace("[ANS]", "correct()");
+              } else {
+                quesButton = quesButton.replace("[ANS]", "incorrect()");
+              }
+              console.log(quesButton)
+              quizContent += quesButton
+            }
+          
+            console.log(quizContent) 
+            document.getElementById("quiz-content").innerHTML = quizContent;
+          }
